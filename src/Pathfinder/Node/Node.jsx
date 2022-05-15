@@ -12,3 +12,8 @@ export default class Node extends Component {
         return <div className="node"></div>;
     }
 }
+
+export const DEFAULT_NODE = {
+    row: 0,
+    col: 0,
+};
