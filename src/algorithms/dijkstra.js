@@ -1,11 +1,11 @@
 const node = {
-    row,
-    col,
-    visited=false,
-    distance=Infinity,
+    row: 0,
+    col: 0,
+    visited: false,
+    distance: Infinity,
 }
 
-function dijkstra(grid, startNode, endNode) {
+export default function dijkstra(grid, startNode, endNode) {
     const visited = [];
     startNode.distance = 0;
     const unvisited = getAllNodes(grid);
@@ -29,7 +29,10 @@ function dijkstra(grid, startNode, endNode) {
         */
         currNode.visited = true;
         visited.push(currNode);
-        if (currNode === endNode) return visited;
+
+        if (currNode === endNode) {
+            return visited;
+        }
         updateNeighbors(currNode, grid);
     }
 }
@@ -41,7 +44,7 @@ function sortNodesByDistance(unvisited) {
 function updateNeighbors(node, grid) {
     const neighbors = getNeighbors(node, grid);
     for (const neighbor of neighbors) {
-        distance = node.distance + 1
+        const distance = node.distance + 1
         if (!neighbor.visited) {
             neighbor.distance = distance;
         }
@@ -52,9 +55,9 @@ function getNeighbors(node, grid) {
     const neighbors = [];
     const {col, row} = node;
     if (row > 0) neighbors.push(grid[row-1][col]);
-    if (row< grid.length-1) neighbors.push(grid[row+1][col]);
+    if (row<(grid.length-1)) neighbors.push(grid[row+1][col]);
     if (col > 0) neighbors.push(grid[row][col-1]);
-    if (col < grid[0].length-1) neighbors.push(grid[row][col+1]);
+    if (col < (grid[0].length-1)) neighbors.push(grid[row][col+1]);
     return neighbors;
 }
 

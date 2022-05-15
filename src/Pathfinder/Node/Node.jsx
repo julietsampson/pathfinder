@@ -9,7 +9,7 @@ export default class Node extends Component {
     }
 
     render() {
-        const {isEndNode, isStartNode} = this.props;
+        const {isEndNode, isStartNode, visited} = this.props;
         const extraClassName = isEndNode 
         ? 'node-end' 
         : isStartNode 

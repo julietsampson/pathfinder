@@ -3,8 +3,10 @@ import Node from './Node/Node';
 
 import './Pathfinder.css';
 import { render } from '@testing-library/react';
+import dijkstra from '../algorithms/dijkstra.js'
 
-const START_ROW, END_ROW = 10;
+const START_ROW = 10;
+const END_ROW = 10;
 const START_COL = 5;
 const END_COL = 45;
 
@@ -31,7 +33,7 @@ export default class Pathfinder extends Component {
             newGrid[node.row][node.col] = visitedNode;
             setTimeout(() => {
                 this.setState({grid: newGrid})
-            });
+            }, 100);
         }
     }
 
@@ -56,7 +58,7 @@ export default class Pathfinder extends Component {
                     return (
                         <div key={rowIndex}>
                         {row.map((node, nodeIndex) => {
-                            const{row, col, isStartNode, isEndNode, isWall} = node;
+                            const{row, col, isStartNode, isEndNode, visited, isWall} = node;
                             return (
                                 <Node
                                     key={nodeIndex}
@@ -65,10 +67,7 @@ export default class Pathfinder extends Component {
                                     isStartNode={isStartNode}
                                     isEndNode={isEndNode}
                                     isWall={isWall}
-                                    mouseIsPressed={mouseIsPressed}
-                                    onMouseDown={(row,col) => this.handleMouseDown(row,col)}
-                                    onMouseEnter={(row,col) => this.handleMouseEnter(row, col)}
-                                    onMouseUp={() => this.handleMouseUp()}></Node>
+                                    visited={visited}></Node>
                             );
                         })}
                         </div>
@@ -98,6 +97,7 @@ const createNode = (col, row) => {
         row,
         isStartNode: row === START_ROW && col === START_COL,
         isEndNode: row === END_ROW && col === END_COL,
+        visited: false,
         isWall: false,
         previousNode: null,
     };
