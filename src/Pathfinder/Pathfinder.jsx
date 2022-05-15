@@ -7,8 +7,8 @@ import dijkstra from '../algorithms/dijkstra.js'
 
 const START_ROW = 10;
 const END_ROW = 10;
-const START_COL = 5;
-const END_COL = 45;
+const START_COL = 15;
+const END_COL = 35;
 
 export default class Pathfinder extends Component {
     constructor(props) {
@@ -24,16 +24,17 @@ export default class Pathfinder extends Component {
     }
 
     animateDijkstra(visited) {
-        for (const node of visited) {
-            const newGrid = this.state.grid.slice();
-            const visitedNode = {
-                ...node,
-                visited: true,
-            };
-            newGrid[node.row][node.col] = visitedNode;
+        for (let i = 0; i<visited.length; i++) {
             setTimeout(() => {
-                this.setState({grid: newGrid})
-            }, 100);
+                const node = visited[i];
+                const newGrid = this.state.grid.slice();
+                const visitedNode = {
+                    ...node,
+                    visited: true,
+                };
+                newGrid[node.row][node.col] = visitedNode;            
+                    this.setState({grid: newGrid})
+            }, 50*i);
         }
     }
 
