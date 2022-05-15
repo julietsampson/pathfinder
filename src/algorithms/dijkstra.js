@@ -5,7 +5,7 @@ const node = {
     distance=Infinity,
 }
 
-function dijkstra(startNode, endNode, grid) {
+function dijkstra(grid, startNode, endNode) {
     const visited = [];
     startNode.distance = 0;
     const unvisited = getAllNodes(grid);
