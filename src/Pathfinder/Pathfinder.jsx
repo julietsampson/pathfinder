@@ -34,7 +34,7 @@ export default class Pathfinder extends Component {
                 };
                 newGrid[node.row][node.col] = visitedNode;            
                     this.setState({grid: newGrid})
-            }, 50*i);
+            }, 20*i);
         }
     }
 
