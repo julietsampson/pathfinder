@@ -19,7 +19,7 @@ export default class Pathfinder extends Component {
             }
             nodes.push(currRow);
         }
-        this.setState({nodes});
+        this.setState({nodes})
     }
 
     render() {
