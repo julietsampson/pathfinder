@@ -13,7 +13,9 @@ export default class Node extends Component {
         const extraClassName = isEndNode 
         ? 'node-end' 
         : isStartNode 
-        ? 'node-start' 
+        ? 'node-start'
+        : visited
+        ? 'node-visited' 
         : '';
         return <div className={`node ${extraClassName}`}></div>;
     }

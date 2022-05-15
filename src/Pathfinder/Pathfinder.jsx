@@ -21,13 +21,27 @@ export default class Pathfinder extends Component {
         this.setState({grid});
     }
 
+    animateDijkstra(visited) {
+        for (const node of visited) {
+            const newGrid = this.state.grid.slice();
+            const visitedNode = {
+                ...node,
+                visited: true,
+            };
+            newGrid[node.row][node.col] = visitedNode;
+            setTimeout(() => {
+                this.setState({grid: newGrid})
+            });
+        }
+    }
+
     visualizeDijkstra() {
         const {grid} = this.state;
         const start = grid[START_ROW][START_COL];
         const end = grid[END_ROW][END_COL];
         const visited = dijkstra(grid, start, end);
-        console.log(visited);
-    };
+        this.animateDijkstra(visited);
+    }
 
     render() {
         const {grid} = this.state;
