@@ -42,7 +42,7 @@ export default class Pathfinder extends Component {
                             const{isStartNode, isEndNode} = node;
                             return (
                                 <Node
-                                    key={nodeIdx}
+                                    key={nodeIndex}
                                     isStartNode={isStartNode}
                                     isEndNode={isEndNode}
                                     test={'foo'}
