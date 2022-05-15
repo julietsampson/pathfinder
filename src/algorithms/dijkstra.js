@@ -1,44 +1,56 @@
-function dijkstra(nodes, start, target, visited, grid) {
-    if (!start || !target || start === target) {
+const node = {
+    row,
+    col,
+    visited,
+    distance,
+}
+
+function dijkstra(nodes, startNode, endNode, visited, grid) {
+    if (!startNode || !endNode || startNode === endNode) {
         return false;
     }
-    nodes[start].distance = 0;
-    nodes[start].direction = "right";
-    let unvisited = Object.keys(nodes);
+    nodes[startNode].distance = 0;
+    const unvisited = nodes.slice();
     while (unvisited.length) {
-        let currNode = closestNode(nodes, unvisited);
+        sortNodesByDistance(unvisited);
+        const currNode = unvisited.unshift();
+        //handle walls, nonexistent path, and animation later
+        /*
         while (currNode.status === "wall" && unvisited.length) {
             currNode = closestNode(nodes, unvisited);
         }
+        */
+       /*
         if (currNode.distance === Infinity) {
             return false;
         }
-        visited.push(currNode);
-        currNode.status = "visited";
-        if (currNode.isEndNode) return "success";
-        updateNeighbors(nodes, currNode, grid);
+        */
+        currNode.visited = true;
+        if (currNode === endNode) return "success";
+        updateNeighbors(currNode, grid);
     }
 }
 
-function closestNode(nodes, unvisited) {
-    let smallestDistance = Infinity;
-    let closest = unvisited[0];
-    for (let i=0; i<unvisited.length;i++) {
-        if (unvisited[i].distance < smallestDistance) {
-            smallestDistance = unvisited[i].distance;
-            closest = unvisited[i];
+function sortNodesByDistance(unvisited) {
+    unvisited.sort((nodeA, nodeB) => nodeA.distance - nodeB.distance);
+}
+
+function updateNeighbors(node, grid) {
+    const neighbors = getNeighbors(node, grid);
+    for (const neighbor of neighbors) {
+        distance = node.distance + 1
+        if (distance < neighbor.distance) {
+            neighbor.distance = distance;
         }
     }
-    return closest;
 }
 
-function updateNeighbors(nodes, currNode, grid) {
-    for (let i=0;i<currNode.neighbors.length;i++) {
-        col = currNode.neighbors[i].row
-        row = currNode.neighbors[i].col
-        distance = currNode.neighbors[i].distance
-        distance += currNode.distance
-        nodes[row][col].distance = distance
-        grid[row][col].distance = distance
-    }
+function getNeighbors(node, grid) {
+    const neighbors = [];
+    const {col, row} = node;
+    if (row > 0) neighbors.push(grid[row-1][col]);
+    if (row< grid.length-1) neighbors.push(grid[row+1][col]);
+    if (col > 0) neighbors.push(grid[row][col-1]);
+    if (col < grid[0].length-1) neighbors.push(grid[row][col+1]);
+    return neighbors;
 }
