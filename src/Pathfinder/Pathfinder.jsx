@@ -23,7 +23,7 @@ export default class Pathfinder extends Component {
                     isStartNode: row === 10 && col === 5,
                     isEndNode: row === 10 && col === 45,
                 };
-                currRow.push([]);
+                currRow.push(currNode);
             }
             nodes.push(currRow);
         }
