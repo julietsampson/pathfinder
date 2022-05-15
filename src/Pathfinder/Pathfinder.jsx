@@ -10,11 +10,28 @@ export default class Pathfinder extends Component {
         this.state = {};
     }
 
+    createGrid() {
+        const nodes = [];
+        for (let row = 0; row < 15; row++) {
+            const currRow = [];
+            for (let col = 0; col < 50; col++) {
+                currRow.push([]);
+            }
+            nodes.push(currRow);
+        }
+        this.setState({nodes});
+    }
+
     render() {
+        const {nodes} = this.state;
+        console.log(nodes)
         return (
-            <div>
-                Foo
-                <Node></Node>
+            <div className="grid">
+                {nodes.map((row, rowIndex) => {
+                    return <div>
+                    {row.map((node, nodeIndex) => <Node></Node>)}
+                    </div>
+                })}
             </div>
         );
     }
