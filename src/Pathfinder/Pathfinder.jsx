@@ -10,7 +10,7 @@ export default class Pathfinder extends Component {
         this.state = {};
     }
 
-    createGrid() {
+    componentDidMount() {
         const nodes = [];
         for (let row = 0; row < 15; row++) {
             const currRow = [];
