@@ -59,7 +59,7 @@ export default class Pathfinder extends Component {
                     return (
                         <div key={rowIndex}>
                         {row.map((node, nodeIndex) => {
-                            const{row, col, isStartNode, isEndNode, visited, isWall, previousNode, distance} = node;
+                            const{row, col, isStartNode, isEndNode, visited, isWall, previousNode,} = node;
                             return (
                                 <Node
                                     key={nodeIndex}
@@ -69,8 +69,7 @@ export default class Pathfinder extends Component {
                                     isEndNode={isEndNode}
                                     isWall={isWall}
                                     visited={visited}
-                                    previousNode={previousNode}
-                                    distance={distance}></Node>
+                                    previousNode={previousNode}></Node>
                             );
                         })}
                         </div>
