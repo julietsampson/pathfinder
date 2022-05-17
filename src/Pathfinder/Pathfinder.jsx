@@ -50,11 +50,7 @@ export default class Pathfinder extends Component {
             setTimeout(() => {
                 const node = visited[i];
                 document.getElementById(`node-${node.row}-${node.col}`).className =
-                    node.isStartNode 
-                    ? 'node node-start'
-                    : node.isEndNode
-                    ? 'node node-end'
-                    : node.isWall
+                    node.isWall
                     ? 'node node-wall'
                     : 'node node-visited';
             }, 10*i);
