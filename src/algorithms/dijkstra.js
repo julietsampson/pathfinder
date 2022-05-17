@@ -18,15 +18,8 @@ export default function dijkstra(grid, startNode, endNode) {
     while (unvisited.length) {
         sortNodesByDistance(unvisited);
         const currNode = unvisited.shift();
-        if (i === 0) {
-            console.log("---FIRST NODE---")
-            console.log(currNode.row);
-            console.log(currNode.col);
-            console.log(currNode.distance);
-            console.log("----------------")
-            i++;
-        }
-        //handle walls, nonexistent path, and animation later
+        if (currNode.isWall) continue;
+        //nonexistent path, and animation later
         /*
         while (currNode.status === "wall" && unvisited.length) {
             currNode = closestNode(nodes, unvisited);
