@@ -24,6 +24,10 @@
 
 .node-wall {
   /* background-color: darkgrey; */
+  background-color: rgb(12, 53, 71)
+
+  /* handle animation later */
+  /*
   animation-name: wallAnimation;
   animation-duration: 0.3s;
   animation-timing-function: ease-out;
@@ -32,6 +36,7 @@
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
   animation-play-state: running;
+  */
 }
 
 @keyframes wallAnimation {
