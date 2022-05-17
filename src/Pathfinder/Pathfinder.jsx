@@ -60,7 +60,7 @@ export default class Pathfinder extends Component {
             setTimeout(() => {
                 const node = path[i];
                 document.getElementById(`node-${node.row}-${node.col}`).className =
-                    'node node-shortest-path';
+                    'node node-path';
             }, 50 * i);
         }
     }
@@ -70,7 +70,7 @@ export default class Pathfinder extends Component {
         const start = grid[START_ROW][START_COL];
         const end = grid[END_ROW][END_COL];
         const visited = dijkstra(grid, start, end);
-        const path = getPath(endNode);
+        const path = getPath(end);
         this.animateDijkstra(visited, path);
     }
 
