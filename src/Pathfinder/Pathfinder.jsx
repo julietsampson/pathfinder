@@ -68,9 +68,7 @@ export default class Pathfinder extends Component {
     }
 
     visualizeDijkstra() {
-        const {grid} = this.state;
-        // reset the grid to default state
-        this.setState(resetGrid(grid))       
+        const {grid} = this.state;      
         const start = grid[START_ROW][START_COL];
         const end = grid[END_ROW][END_COL];
         const visited = dijkstra(grid, start, end);
@@ -78,14 +76,43 @@ export default class Pathfinder extends Component {
         this.animateDijkstra(visited, path);
     }
 
+    resetGrid(grid) {
+        for (let row=0;row<grid.length;row++) {
+            for (let col=0;col<grid[0].length;col++) {
+                if (row === START_ROW && col === START_COL) {
+                    document.getElementById(`node-${row}-${col}`).className =
+                        'node node-start';
+                }
+                else if (row === END_ROW && col === END_COL) {
+                    document.getElementById(`node-${row}-${col}`).className =
+                        'node node-end';
+                }
+                else {
+                    document.getElementById(`node-${row}-${col}`).className =
+                        'node';
+                }
+            }
+        }
+    }
+
     render() {
         const {grid, mouseIsPressed} = this.state;
 
         return (
             <>
-            <button onClick={() => this.visualizeDijkstra()}>
-                Visualize Dijkstra's Algorithm
-            </button>
+            <header>
+                <nav className="title"> 
+                    <h1>Pathfinder</h1>                   
+                </nav>
+                <nav className="buttons">
+                        <button onClick={() => this.visualizeDijkstra()}>
+                            Visualize Algorithm
+                        </button>
+                        <button onClick={() => this.resetGrid(grid)}>
+                            Reset Grid
+                        </button>
+                </nav>
+            </header>        
             <div className="grid">
                 {grid.map((row, rowIndex) => {
                     return (
@@ -121,32 +148,13 @@ const getInitialGrid = () => {
     const grid = [];
     for (let row=0;row<20;row++) {
         const currRow = [];
-        for (let col = 0;col<50;col++) {
+        for (let col = 0;col<57;col++) {
             currRow.push(createNode(col,row));
         }
         grid.push(currRow);
     }
     return grid;
 };
-
-const resetGrid = (grid) => {
-    for (let row=0;row<grid.length;row++) {
-        for (let col=0;col<grid[0].length;col++) {
-            if (row === START_ROW && col === START_COL) {
-                document.getElementById(`node-${row}-${col}`).className =
-                    'node node-start';
-            }
-            else if (row === END_ROW && col === END_COL) {
-                document.getElementById(`node-${row}-${col}`).className =
-                    'node node-end';
-            }
-            else {
-                document.getElementById(`node-${row}-${col}`).className =
-                    'node';
-            }
-        }
-    }
-}
 
 const getPath = (end) => {
     const path = [];
