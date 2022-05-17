@@ -22,6 +22,10 @@
   background-color: lightblue;
 }
 
+.node-wall {
+  background-color: darkgrey;
+}
+
 .node-path {
   background-color: lightgoldenrodyellow;
   opacity: 0.8;
