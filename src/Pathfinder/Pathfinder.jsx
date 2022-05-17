@@ -11,10 +11,11 @@ const START_COL = 15;
 const END_COL = 35;
 
 export default class Pathfinder extends Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.state = {
             grid: [],
+            mouseIsPressed: false,
         };
     }
 
@@ -23,6 +24,21 @@ export default class Pathfinder extends Component {
         this.setState({grid});
     }
 
+    handleMouseDown(row, col) {
+        const newGrid = createWall(this.state.grid, row, col);
+        this.setState({grid: newGrid, mouseIsPressed: true});
+    }
+
+    handleMouseEnter(row, col) {
+        if (!this.state.mouseIsPressed) return;
+        const newGrid = createWall(this.state.grid, row, col);
+        this.setState({grid:newGrid});
+    }
+
+    handleMouseUp() {
+        this.setState({mouseIsPressed: false});
+    }
+ 
     animateDijkstra(visited) {
         for (let i = 0; i<visited.length; i++) {
             setTimeout(() => {
@@ -48,7 +64,8 @@ export default class Pathfinder extends Component {
 
     render() {
         const {grid} = this.state;
-
+        let {mouseIsPressed} = grid.mouseIsPressed;
+        
         return (
             <>
             <button onClick={() => this.visualizeDijkstra()}>
@@ -59,17 +76,21 @@ export default class Pathfinder extends Component {
                     return (
                         <div key={rowIndex}>
                         {row.map((node, nodeIndex) => {
-                            const{row, col, isStartNode, isEndNode, visited, isWall, previousNode,} = node;
+                            const{row, col, isStartNode, isEndNode, isWall} = node;
                             return (
                                 <Node
                                     key={nodeIndex}
                                     col={col}
-                                    row={row}
                                     isStartNode={isStartNode}
                                     isEndNode={isEndNode}
                                     isWall={isWall}
-                                    visited={visited}
-                                    previousNode={previousNode}></Node>
+                                    mouseIsPressed = {mouseIsPressed}
+                                    onMouseDown={(row,col) => this.handleMouseDown(row, col)}
+                                    onMouseEnter={(row,col) =>
+                                        this.handleMouseEnter(row,col)
+                                    }
+                                    onMouseUp={() => this.handleMouseUp()}
+                                    row={row}></Node>
                             );
                         })}
                         </div>
