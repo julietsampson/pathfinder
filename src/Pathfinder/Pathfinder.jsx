@@ -39,18 +39,29 @@ export default class Pathfinder extends Component {
         this.setState({mouseIsPressed: false});
     }
  
-    animateDijkstra(visited) {
-        for (let i = 0; i<visited.length; i++) {
+    animateDijkstra(visited, path) {
+        for (let i = 0; i<=visited.length; i++) {
+            if (i == visited.length) {
+                setTimeout(() => {
+                    this.animatePath(path);
+                }, 10 * i);
+                return;
+            }
             setTimeout(() => {
                 const node = visited[i];
-                const newGrid = this.state.grid.slice();
-                const visitedNode = {
-                    ...node,
-                    visited: true,
-                };
-                newGrid[node.row][node.col] = visitedNode;            
-                    this.setState({grid: newGrid})
-            }, 20*i);
+                document.getElementById(`node-${node.row}-${node.col}`).className =
+                    'node node-visited';
+            }, 25*i);
+        }
+    }
+
+    animatePath(path) {
+        for (let i=0; i < path.length; i++) {
+            setTimeout(() => {
+                const node = path[i];
+                document.getElementById(`node-${node.row}-${node.col}`).className =
+                    'node node-shortest-path';
+            }, 50 * i);
         }
     }
 
@@ -59,13 +70,13 @@ export default class Pathfinder extends Component {
         const start = grid[START_ROW][START_COL];
         const end = grid[END_ROW][END_COL];
         const visited = dijkstra(grid, start, end);
-        this.animateDijkstra(visited);
+        const path = getPath(endNode);
+        this.animateDijkstra(visited, path);
     }
 
     render() {
-        const {grid} = this.state;
-        let {mouseIsPressed} = grid.mouseIsPressed;
-        
+        const {grid, mouseIsPressed} = this.state;
+
         return (
             <>
             <button onClick={() => this.visualizeDijkstra()}>
@@ -113,6 +124,10 @@ const getInitialGrid = () => {
     }
     return grid;
 };
+
+const getPath = (end) => {
+    return [];
+}
 
 const createNode = (col, row) => {
     return {
