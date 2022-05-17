@@ -57,7 +57,7 @@ export default class Pathfinder extends Component {
                     : node.isWall
                     ? 'node node-wall'
                     : 'node node-visited';
-            }, 25*i);
+            }, 20*i);
         }
     }
 
