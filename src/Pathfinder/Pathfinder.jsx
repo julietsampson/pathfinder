@@ -69,6 +69,8 @@ export default class Pathfinder extends Component {
 
     visualizeDijkstra() {
         const {grid} = this.state;
+        // reset the grid to default state
+        this.setState(resetGrid(grid))       
         const start = grid[START_ROW][START_COL];
         const end = grid[END_ROW][END_COL];
         const visited = dijkstra(grid, start, end);
@@ -127,6 +129,25 @@ const getInitialGrid = () => {
     return grid;
 };
 
+const resetGrid = (grid) => {
+    for (let row=0;row<grid.length;row++) {
+        for (let col=0;col<grid[0].length;col++) {
+            if (row === START_ROW && col === START_COL) {
+                document.getElementById(`node-${row}-${col}`).className =
+                    'node node-start';
+            }
+            else if (row === END_ROW && col === END_COL) {
+                document.getElementById(`node-${row}-${col}`).className =
+                    'node node-end';
+            }
+            else {
+                document.getElementById(`node-${row}-${col}`).className =
+                    'node';
+            }
+        }
+    }
+}
+
 const getPath = (end) => {
     const path = [];
     let curr = end;
@@ -135,7 +156,7 @@ const getPath = (end) => {
         curr = curr.previous;
     }
     return path;
-}
+};
 
 const createNode = (col, row) => {
     return {
@@ -159,4 +180,4 @@ const createWall = (grid,row,col) => {
     };
     newGrid[row][col] = wall;
     return newGrid;
-}
+};
