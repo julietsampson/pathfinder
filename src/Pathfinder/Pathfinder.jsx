@@ -132,7 +132,13 @@ const getInitialGrid = () => {
 };
 
 const getPath = (end) => {
-    return [];
+    const path = [];
+    let curr = end;
+    while (curr != null) {
+        path.unshift(curr);
+        curr = curr.previous;
+    }
+    return path;
 }
 
 const createNode = (col, row) => {

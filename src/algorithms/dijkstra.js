@@ -23,6 +23,7 @@ export default function dijkstra(grid, startNode, endNode) {
         if (currNode.distance === Infinity) {
             return visited;
         }
+        currNode.visited = true;
         visited.push(currNode);
         if (currNode === endNode) {
             return visited;
@@ -41,6 +42,7 @@ function updateNeighbors(node, grid) {
         const distance = node.distance + 1
         if (!neighbor.visited) {
             neighbor.distance = distance;
+            neighbor.previous = node;
         }
     }
 }
