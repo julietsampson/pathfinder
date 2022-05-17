@@ -19,17 +19,10 @@ export default function dijkstra(grid, startNode, endNode) {
         sortNodesByDistance(unvisited);
         const currNode = unvisited.shift();
         if (currNode.isWall) continue;
-        //nonexistent path, and animation later
-        /*
-        while (currNode.status === "wall" && unvisited.length) {
-            currNode = closestNode(nodes, unvisited);
-        }
-        */
-       /*
+        //handles situations where there is no possible path to endNode
         if (currNode.distance === Infinity) {
-            return false;
+            return visited;
         }
-        */
         visited.push(currNode);
         if (currNode === endNode) {
             return visited;
