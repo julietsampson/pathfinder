@@ -30,9 +30,7 @@ export default function dijkstra(grid, startNode, endNode) {
             return false;
         }
         */
-        currNode.visited = true;
         visited.push(currNode);
-
         if (currNode === endNode) {
             return visited;
         }
