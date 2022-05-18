@@ -43,6 +43,7 @@ button {
   background-color: rgb(12, 53, 71);
 	color: #FEFFFF;
   border: none;
+  border-radius: 5px;
   padding: 10px 25px;
   height: 50px;
 
@@ -59,5 +60,5 @@ button {
 }
 
 button:hover {
-	color: #FEFFFF;
+	background-color: rgba(12, 53, 71, 0.8);
 }

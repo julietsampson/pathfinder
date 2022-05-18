@@ -18,7 +18,13 @@ export default function dijkstra(grid, startNode, endNode) {
     while (unvisited.length) {
         sortNodesByDistance(unvisited);
         const currNode = unvisited.shift();
-        if (currNode.isWall) continue;
+        if (currNode.isWall) {
+            console.log("---DIJKSTRA HITS WALL---");
+            console.log(currNode.row);
+            console.log(currNode.col);
+            console.log("------------------------");
+            continue;
+        }
         //handles situations where there is no possible path to endNode
         if (currNode.distance === Infinity) {
             return visited;

@@ -50,9 +50,7 @@ export default class Pathfinder extends Component {
             setTimeout(() => {
                 const node = visited[i];
                 document.getElementById(`node-${node.row}-${node.col}`).className =
-                    node.isWall
-                    ? 'node node-wall'
-                    : 'node node-visited';
+                    'node node-visited';
             }, 10*i);
         }
     }
@@ -76,21 +74,20 @@ export default class Pathfinder extends Component {
         this.animateDijkstra(visited, path);
     }
 
-    resetGrid(grid) {
+    resetGrid() {
+        const {grid} = this.state;
         for (let row=0;row<grid.length;row++) {
             for (let col=0;col<grid[0].length;col++) {
-                if (row === START_ROW && col === START_COL) {
-                    document.getElementById(`node-${row}-${col}`).className =
-                        'node node-start';
-                }
-                else if (row === END_ROW && col === END_COL) {
-                    document.getElementById(`node-${row}-${col}`).className =
-                        'node node-end';
-                }
-                else {
-                    document.getElementById(`node-${row}-${col}`).className =
-                        'node';
-                }
+                document.getElementById(`node-${row}-${col}`).className =
+                    grid[row][col].isStartNode
+                    ? 'node node-start'
+                    : grid[row][col].isEndNode
+                    ? 'node node-end'
+                    : 'node';
+                grid[row][col].isWall = false;
+                grid[row][col].visited = false;
+                grid[row][col].distance = Infinity;
+                grid[row][col].previous = null;
             }
         }
     }
@@ -174,7 +171,7 @@ const createNode = (col, row) => {
         isEndNode: row === END_ROW && col === END_COL,
         visited: false,
         isWall: false,
-        previousNode: null,
+        previous: null,
         distance: Infinity,
     };
 };
@@ -186,6 +183,10 @@ const createWall = (grid,row,col) => {
         ...node,
         isWall: !node.isWall,
     };
+    console.log("---WALL NODE---");
+    console.log(row);
+    console.log(col);
+    console.log("---------------");
     newGrid[row][col] = wall;
     return newGrid;
 };
