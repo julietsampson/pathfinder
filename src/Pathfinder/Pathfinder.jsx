@@ -7,8 +7,8 @@ import dijkstra from '../algorithms/dijkstra.js'
 
 const START_ROW = 10;
 const END_ROW = 10;
-const START_COL = 15;
-const END_COL = 35;
+const START_COL = 20;
+const END_COL = 36;
 
 export default class Pathfinder extends Component {
     constructor() {

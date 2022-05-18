@@ -7,11 +7,11 @@ header {
 	position: sticky;
 	top: 0;
 	height: 80px;
-	background: #29abe2;
+	background: rgb(0,198,218);
 	z-index: 15;
 	border-bottom: 2px solid rgba(81, 182, 225, .5);
 	-webkit-background-clip: padding-box; 
-  background-clip: padding-box;
+  	background-clip: padding-box;
 }
 
 .grid {
@@ -27,10 +27,10 @@ nav {
 
 nav.title>h1 {
 	color: #FEFFFF;
-  font-size: 36px;
+  	font-size: 36px;
 	font-weight: bold;
-  margin: 15px 0px 0px 20px;
-  float: left;
+  	margin: 17px 0px 0px 20px;
+  	float: left;
 }
 
 nav.buttons>button {
@@ -39,26 +39,27 @@ nav.buttons>button {
 }
 
 button {
-  display: inline-block;
-  background-color: rgb(12, 53, 71);
+	display: inline-block;
+	background-color: rgb(12, 53, 71);
 	color: #FEFFFF;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 25px;
-  height: 50px;
+	border: none;
+	border-radius: 5px;
+	padding: 10px 25px;
+	height: 50px;
+	transition: 0.3s;
 
 	font-family: 'Montserrat', sans-serif;
 	font-style: normal;
-	font-size: 24px;
-	font-weight: 200;
+	font-size: 18px;
+	font-weight: 700;
 	line-height: 26px;
 	align-items: center;
 	text-align: center;
 	letter-spacing: -0.02em;
 	text-decoration: none;
-	opacity: 100%;
 }
 
 button:hover {
+	cursor: grab;
 	background-color: rgba(12, 53, 71, 0.8);
 }
