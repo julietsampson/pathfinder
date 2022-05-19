@@ -109,7 +109,15 @@ export default class Pathfinder extends Component {
                             Reset Grid
                         </button>
                 </nav>
-            </header>        
+            </header>
+            <div class="description">
+                <p>Welcome to Pathfinder! Here you can visualize Dijkstra's famous pathfinding 
+                    algorithm.</p>
+                <p>The green arrow represents the starting point, and the red circle, the end point.</p>
+                <p>Simply click and drag to add walls to obstruct the path between both points, then
+                    click "Visualize Algorithm" when you're ready!
+                </p>
+            </div>
             <div className="grid">
                 {grid.map((row, rowIndex) => {
                     return (

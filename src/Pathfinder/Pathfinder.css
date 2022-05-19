@@ -15,7 +15,7 @@ header {
 }
 
 .grid {
-  margin: 100px 0px 0px;
+  margin: 30px 0px 0px;
 }
 
 nav {
@@ -62,4 +62,13 @@ button {
 button:hover {
 	cursor: grab;
 	background-color: rgba(12, 53, 71, 0.8);
+}
+
+.description {
+	margin-top: 20px;
+}
+
+p {
+	font-family: 'Montserrat', sans-serif;
+	margin-top: 5px;
 }
