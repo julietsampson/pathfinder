@@ -11,11 +11,13 @@
 }
 
 .node-end {
-  background-color: red;
+  background-image: url('./img/circle.png');
+  background-size: 100%;
 }
 
 .node-start {
-  background-color: green;
+  background-image: url('./img/arrow.png');
+  background-size: 100%;
 }
 
 .node-visited {
